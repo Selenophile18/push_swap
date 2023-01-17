@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/12 18:49:37 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:29:05 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,48 +25,49 @@ void	ft_free(char	**av)
 	free(av);
 }
 
-t_list	*get_int(int ac, char **av, t_list	*node)
+t_stack	*ints(char	*all)
 {
+	char	**arg;
+	t_stack	*a;
 	int		i;
-	t_list	*temp;
-	t_list	*iter;
+	int		s;
 
-	temp = node;
-	iter = node;
-	i = 0;
-	while (i < ac && av[i])
+	arg = ft_split(all, ' ');
+	s = 0;
+	while (arg[s])
+		s++;
+	a = (t_stack *)ft_calloc(s, sizeof(t_stack));
+	a->head = ft_lstnew(ft_atoi(arg[0]));
+	a->stack = a->head;
+	i = 1;
+	a->size = 1;
+	while (arg[i])
 	{
-		ft_lstadd_back(&node, ft_lstnew(ft_atoi(av[i])));
-		node = node->next;
+		ft_lstadd_back(&(a)->head, ft_lstnew(ft_atoi(arg[i])));
+		a->head = a->head->next;
+		a->size++;
 		i++;
 	}
-	return (temp);
+	a->head = a->stack;
+	return (a);
 }
 
-t_list	*get_arg(int ac, char **av, t_num *d)
+t_stack	*get_arg(int ac, char **av)
 {
 	int		i;
-	int		j;
-	t_list	*stack_a;
-	char	**arg;
+	t_stack	*a;
+	t_stack	*it;
+	char	*all;
 
-	d->arg_num = 0;
-	i = 1;
-	while (i < ac)
+	i = 0;
+	all = 0;
+	while (++i < ac)
 	{
-		j = 0;
-		arg = ft_split(av[i], 32);
-		while (arg[j])
-			j++;
-		final_check(j, arg);
-		d->arg_num += j;
-		if (i == 1)
-			stack_a = get_int(j, arg + 1, ft_lstnew(ft_atoi(arg[0])));
-		else
-			stack_a = get_int(j, arg, stack_a);
-		ft_free(arg);
-		i++;
+		all = ft_strjoin(all, " ");
+		all = ft_strjoin(all, av[i]);
 	}
-	ft_check_duplicate(stack_a);
-	return (stack_a);
+	final_check(all);
+	a = ints(all);
+	it = a;
+	return (a);
 }

@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:09:53 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/12 18:51:14 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:30:13 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,27 @@ void	ft_error(void)
 	exit(-1);
 }
 
-void	ft_check_duplicate(t_list	*stack)
+void	ft_check_duplicate(char **arg)
 {
-	t_list	*temp;
+	int		i;
+	int		len;
+	int		j;
 
-	while (stack)
+	i = 0;
+	while (arg[i])
 	{
-		temp = stack->next;
-		while (temp)
+		j = i + 1;
+		while (arg[j])
 		{
-			if (temp->content == stack->content)
+			if (ft_strlen(arg[i]) > ft_strlen(arg[j]))
+				len = ft_strlen(arg[i]);
+			else
+				len = ft_strlen(arg[j]);
+			if (!ft_strncmp(arg[i], arg[j], len))
 				ft_error();
-			temp = temp->next;
+			j++;
 		}
-		stack = stack->next;
+		i++;
 	}
 }
 
@@ -98,16 +105,19 @@ void	max_min(char	*str)
 	}
 }
 
-void	final_check(int ac, char	**av)
+void	final_check(char *arg)
 {
-	int			i;
+	int		i;
+	char	**all;
 
 	i = 0;
-	while (av[i] && i < ac)
+	all = ft_split(arg, 32);
+	ft_check_duplicate(all);
+	while (all[i])
 	{
-		av[i] = str_isdigit(av[i]);
-		if (ft_strlen(av[i]) >= 10)
-			max_min(av[i]);
+		all[i] = str_isdigit(all[i]);
+		if (ft_strlen(all[i]) >= 10)
+			max_min(all[i]);
 		i++;
 	}
 }

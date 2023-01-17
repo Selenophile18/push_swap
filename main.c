@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/14 22:25:20 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:44:20 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,16 @@
 
 int	main(int ac, char **av)
 {
-	t_list	*stack_a;
-	t_list	*iter;
-	t_list	*stack_b;
+	t_stack	*a;
+	t_stack	*b;
 	int		*arr;
-	int		i;
 	t_num	d;
 
-	stack_a = get_arg(ac, av, &d);
-	stack_b = ft_calloc(1, sizeof(t_list *));
-	// push_b(&stack_a, &stack_b);
-	iter = stack_a;
-	arr = ref_arr(stack_a, d);
-	i = 0;
-	while (i < d.arg_num)
-	{
-		printf("[%d]\n", arr[i]);
-		i++;
-	}
-	// while (iter)
-	// {
-	// 	printf("[%d]\n", iter->content);
-	// 	printf("[%p]\n", iter->next);
-	// 	iter = iter->next;
-	// }
+	a = get_arg(ac, av);
+	b = 0;
+	ft_init(a, &d);
+	arr = ref_arr(a, d);
+	a_to_b(arr, &a, &b, &d);
 	// if (d.arg_num < 3)
 	// 	get_sorted_three(iter);
 	// ft_init(&d);

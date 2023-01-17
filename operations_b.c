@@ -6,68 +6,72 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:33:57 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/14 20:42:31 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:25:33 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap_b(t_list *lst)
+void	swap_b(t_stack *b)
 {
 	int		temp;
 	t_list	*iter;
 
-	temp = lst->content;
-	iter = lst;
-	iter = iter->next;
-	lst->content = iter->content;
-	lst = lst->next;
-	lst->content = temp;
+	if (b->size < 2)
+		return ;
+	temp = b->head->content;
+	iter = b->head->next;
+	b->head->content = iter->content;
+	iter->content = temp;
 	ft_putendl_fd("sb", 1);
 }
 
-t_list	*rotate_b(t_list *lst)
+void	rotate_b(t_stack **b)
 {
 	t_list	*temp;
-	t_list	*iter;
 
-	temp = lst;
-	iter = lst;
-	lst = lst->next;
-	while (iter->next)
-		iter = iter->next;
-	iter->next = temp;
+	if ((*b)->size < 2)
+		return ;
+	temp = (*b)->head;
+	(*b)->head = (*b)->head->next;
+	while ((*b)->stack->next)
+		(*b)->stack = (*b)->stack->next;
+	(*b)->stack->next = temp;
 	temp->next = NULL;
+	(*b)->stack = (*b)->head;
 	ft_putendl_fd("rb", 1);
-	return (lst);
 }
 
-void	push_a(t_list **b, t_list **a)
+void	push_a(t_stack **b, t_stack **a)
 {
 	t_list	*temp;
 
-	temp = *b;
-	*b = (*b)->next;
-	temp->next = *a;
-	*a = temp;
+	temp = (*b)->head;
+	if (!(*b)->head)
+		return ;
+	(*b)->head = (*b)->head->next;
+	(*b)->stack = (*b)->head;
+	temp->next = (*a)->head;
+	(*a)->head = temp;
 	ft_putendl_fd("pa", 1);
+	(*b)->size -= 1;
+	(*b)->size += 1;
 }
 
-t_list	*rev_rotate_b(t_list *lst)
+void	rev_rotate_b(t_stack **b)
 {
 	t_list	*temp;
-	t_list	*iter;
 
-	iter = lst;
-	temp = lst;
-	while (iter->next)
+	if ((*b)->size < 2)
+		return ;
+	temp = (*b)->head;
+	while ((*b)->stack->next)
 	{
-		temp = iter;
-		iter = iter->next;
+		temp = (*b)->stack;
+		(*b)->stack = (*b)->stack->next;
 	}
 	temp->next = NULL;
-	iter->next = lst;
-	lst = iter;
+	(*b)->stack->next = (*b)->head;
 	ft_putendl_fd("rrb", 1);
-	return (lst);
+	(*b)->head = (*b)->stack;
 }
