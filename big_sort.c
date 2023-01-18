@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 00:47:37 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 23:37:14 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,58 +55,62 @@ int	*ref_arr(t_stack *stack, t_num d)
 	return (arr);
 }
 
-void	find_nb(t_stack **a, int pos)
+void	find_nb(t_stack **a, int pos, int nb)
 {
-	t_stack	*iter;
-	
-	iter = a;
-	if (pos <= (*a)->size)
+	printf("size = %d\n", (*a)->size);
+	if (pos <= (*a)->size / 2)
 	{
-		while (pos)
-		{
+		while ((*a)->head->content != nb)
 			rotate_a(a);
-			pos--;
-		}
 	}
 	else
 	{
-		while (pos < (*a)->size)
-		{
+		while ((*a)->head->content != nb)
 			rev_rotate_a(a);
-			pos++;
-		}
 	}
-	return (iter);
 }
 
-void	a_to_b(int *arr, t_stack **a, t_stack **b, t_num *d)
+void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 {
 	int		i;
 	int		j;
+	int		t;
+	t_stack *temp;
 
+	temp = (*a); 
+	// katwse3li l array
 	while (d->start >= 0 && d->end < d->arg_num)
 	{
-		while ((*a)->head)
+		// kador 3la stack
+		j = 0;
+		while (temp->head)
 		{
 			i = d->start;
-			j = 0;
-			ft_init(a, &d);
+			// kador 3la array
 			while (i < d->end)
 			{
-				// printf("%d, %d\n", iter->content, arr[i]);
-				if ((*a)->head->content == arr[i])
+				printf("%d, %d j: %d\n", (*a)->stack->content, arr[i], j);
+				t = 0;
+				// fash kanlqa f stack 3la shnu 3ndi f array
+				if (temp->stack->content == arr[i])
 				{
-					find_nb(a, j);
+					t = 1;
+					find_nb(a, j, temp->stack->content);
+					// printf("j = %d\n", j);
 					push_b(a, b);
-					// printf("[%d]\n", *(b)->content);
-					if (j <= d->mid + 1)
-						rotate_b(b);
+					if (i < d->mid)
+						rotate_b(&b);
+					// printf("here\n");
 					break ;
 				}
 				i++;
-				j++;
 			}
-			(*a)->head = (*a)->head->next;
+			// katshufli wash incrementit f stack
+			if (!t)
+				temp->stack = temp->stack->next;
+			else
+				temp->stack = (*a)->head;
+			j++;
 		}
 		d->start -= d->mid;
 		d->end += d->mid; 

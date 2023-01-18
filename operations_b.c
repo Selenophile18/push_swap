@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:33:57 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 00:25:33 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 23:35:08 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	rotate_b(t_stack **b)
 		return ;
 	temp = (*b)->head;
 	(*b)->head = (*b)->head->next;
+	(*b)->stack = (*b)->head;
 	while ((*b)->stack->next)
 		(*b)->stack = (*b)->stack->next;
 	(*b)->stack->next = temp;

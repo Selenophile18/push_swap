@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 00:23:20 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/18 21:39:59 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@ typedef struct s_num
 	int	offset;
 	int	start;
 	int	end;
+	int	s;
+	int	e;
+	int	m;
 }	t_num;
 
 typedef	struct s_stack
@@ -39,7 +42,7 @@ typedef	struct s_stack
 void	swap_a(t_stack *a);
 void	rotate_a(t_stack **a);
 void	rev_rotate_a(t_stack **a);
-void	push_b(t_stack **a, t_stack **b);
+void	push_b(t_stack **a, t_stack *b);
 void	swap_b(t_stack *b);
 void	rotate_b(t_stack **b);
 void	rev_rotate_b(t_stack **b);
@@ -58,6 +61,6 @@ void	ft_init(t_stack **a, t_num *d);
 /*---------sorting------------*/
 void	get_sorted_three(t_stack	*stack);
 int		*ref_arr(t_stack	*stack, t_num d);
-void	a_to_b(int *arr, t_stack **a, t_stack **b, t_num *d);
+void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d);
 
 #endif
