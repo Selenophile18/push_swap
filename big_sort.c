@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 23:37:14 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/19 17:55:23 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,20 @@ int	*ref_arr(t_stack *stack, t_num d)
 	return (arr);
 }
 
-void	find_nb(t_stack **a, int pos, int nb)
+void	find_nb(t_stack **a, int nb)
 {
-	printf("size = %d\n", (*a)->size);
-	if (pos <= (*a)->size / 2)
+	int		j;
+	t_list	*tmp;
+
+	tmp = (*a)->head;
+	j = 0;
+	while (tmp->content != nb)
+	{
+		j++;
+		tmp = tmp->next;
+	}
+	// printf("size = %d\n", (*a)->size);
+	if (j <= (*a)->size / 2)
 	{
 		while ((*a)->head->content != nb)
 			rotate_a(a);
@@ -77,30 +87,31 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 	int		t;
 	t_stack *temp;
 
-	temp = (*a); 
 	// katwse3li l array
-	while (d->start >= 0 && d->end < d->arg_num)
+	temp = (*a);
+	i = 0;
+	while (d->start >= 0 && d->end <= d->arg_num)
 	{
 		// kador 3la stack
 		j = 0;
-		while (temp->head)
+		// printf("here\n");
+		temp->stack = (*a)->head;
+		while (temp->stack)
 		{
 			i = d->start;
 			// kador 3la array
 			while (i < d->end)
 			{
-				printf("%d, %d j: %d\n", (*a)->stack->content, arr[i], j);
+				printf("%d, %d start: %d\n", (*a)->stack->content, arr[i], d->start);
 				t = 0;
 				// fash kanlqa f stack 3la shnu 3ndi f array
 				if (temp->stack->content == arr[i])
 				{
 					t = 1;
-					find_nb(a, j, temp->stack->content);
-					// printf("j = %d\n", j);
+					find_nb(a, temp->stack->content);
 					push_b(a, b);
 					if (i < d->mid)
 						rotate_b(&b);
-					// printf("here\n");
 					break ;
 				}
 				i++;
@@ -112,7 +123,9 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 				temp->stack = (*a)->head;
 			j++;
 		}
+		d->mid = (*a)->size / 2;
 		d->start -= d->mid;
 		d->end += d->mid; 
+		// printf("here start: %d, end: %d mid: %d\n", d->start, d->end, d->mid);
 	}
 }
