@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 19:15:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 23:35:19 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/20 01:19:24 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	push_b(t_stack **a, t_stack *b)
 {
 	if (!(*a)->head)
 		return ;
+	(*a)->stack = (*a)->head;
 	(*a)->head = (*a)->head->next;
 	(*a)->stack->next = b->head;
 	b->head = (*a)->stack;

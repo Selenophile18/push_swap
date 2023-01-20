@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 21:39:59 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/19 23:21:02 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ typedef struct s_num
 	int	offset;
 	int	start;
 	int	end;
-	int	s;
-	int	e;
 	int	m;
 }	t_num;
 

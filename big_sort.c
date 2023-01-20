@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/19 17:55:23 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/20 02:01:34 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,19 +55,20 @@ int	*ref_arr(t_stack *stack, t_num d)
 	return (arr);
 }
 
-void	find_nb(t_stack **a, int nb)
+void	find_nb(t_stack **a, t_stack *b, int nb)
 {
 	int		j;
+	int		mid;
 	t_list	*tmp;
 
 	tmp = (*a)->head;
 	j = 0;
+	mid = (*a)->size / 2;
 	while (tmp->content != nb)
 	{
 		j++;
 		tmp = tmp->next;
 	}
-	// printf("size = %d\n", (*a)->size);
 	if (j <= (*a)->size / 2)
 	{
 		while ((*a)->head->content != nb)
@@ -78,6 +79,38 @@ void	find_nb(t_stack **a, int nb)
 		while ((*a)->head->content != nb)
 			rev_rotate_a(a);
 	}
+	push_b(a, b);
+}
+
+int	iter(int tmp, t_stack **a, t_stack *b, t_num d, int *arr)
+{
+	while (d.start < d.end)
+	{
+		if (tmp == arr[d.start])
+		{
+			find_nb(a, b, tmp);
+			if (d.start < d.m)
+				rotate_b(&b);
+			return (1);
+		}
+		d.start++;
+	}
+	return (0);
+}
+
+void	check_a(t_stack **a, t_stack *b, int *arr, t_num d)
+{
+	int	i;
+
+	while (ft_lstsize(b->head) < d.arg_num)
+	{
+		i = 0;
+		while (i < d.arg_num && arr[i] != (*a)->head->content)
+				i++;
+		find_nb(a, b, (*a)->head->content);
+		if (i < d.m)
+			rotate_b(&b);	
+	}
 }
 
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
@@ -87,45 +120,23 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 	int		t;
 	t_stack *temp;
 
-	// katwse3li l array
 	temp = (*a);
-	i = 0;
-	while (d->start >= 0 && d->end <= d->arg_num)
+	while (d->start >= 0 || d->end <= d->arg_num)
 	{
-		// kador 3la stack
 		j = 0;
-		// printf("here\n");
 		temp->stack = (*a)->head;
 		while (temp->stack)
 		{
 			i = d->start;
-			// kador 3la array
-			while (i < d->end)
-			{
-				printf("%d, %d start: %d\n", (*a)->stack->content, arr[i], d->start);
-				t = 0;
-				// fash kanlqa f stack 3la shnu 3ndi f array
-				if (temp->stack->content == arr[i])
-				{
-					t = 1;
-					find_nb(a, temp->stack->content);
-					push_b(a, b);
-					if (i < d->mid)
-						rotate_b(&b);
-					break ;
-				}
-				i++;
-			}
-			// katshufli wash incrementit f stack
+			t = iter(temp->stack->content, a, b, *d, arr);
 			if (!t)
 				temp->stack = temp->stack->next;
 			else
 				temp->stack = (*a)->head;
 			j++;
 		}
-		d->mid = (*a)->size / 2;
-		d->start -= d->mid;
-		d->end += d->mid; 
-		// printf("here start: %d, end: %d mid: %d\n", d->start, d->end, d->mid);
+		d->start -= d->offset;
+		d->end += d->offset;
 	}
+	check_a(a, b, arr, *d);
 }
