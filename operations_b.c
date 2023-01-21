@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:33:57 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 23:35:08 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/20 16:53:37 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,18 @@ void	rotate_b(t_stack **b)
 	ft_putendl_fd("rb", 1);
 }
 
-void	push_a(t_stack **b, t_stack **a)
+void	push_a(t_stack **b, t_stack *a)
 {
-	t_list	*temp;
-
-	temp = (*b)->head;
 	if (!(*b)->head)
 		return ;
-	(*b)->head = (*b)->head->next;
 	(*b)->stack = (*b)->head;
-	temp->next = (*a)->head;
-	(*a)->head = temp;
+	(*b)->head = (*b)->head->next;
+	(*b)->stack->next = a->head;
+	a->head = (*b)->stack;
+	(*b)->stack = (*b)->head;
 	ft_putendl_fd("pa", 1);
 	(*b)->size -= 1;
-	(*b)->size += 1;
+	a->size += 1;
 }
 
 void	rev_rotate_b(t_stack **b)

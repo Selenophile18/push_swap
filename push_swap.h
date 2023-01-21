@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/19 23:21:02 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:06:28 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	push_b(t_stack **a, t_stack *b);
 void	swap_b(t_stack *b);
 void	rotate_b(t_stack **b);
 void	rev_rotate_b(t_stack **b);
-void	push_a(t_stack **b, t_stack **a);
+void	push_a(t_stack **b, t_stack *a);
 /*-------error-handling-------*/
 void	max_min(char	*str);
 char	*str_isdigit(char	*s);
@@ -55,10 +55,14 @@ t_stack	*get_int(int ac, char **av, t_stack	*node);
 t_stack	*get_arg(int ac, char **av);
 /*------------utils-----------*/
 int		is_sorted(t_stack *stack);
+void	sort_arr(int *arr, t_num d);
 void	ft_init(t_stack **a, t_num *d);
 /*---------sorting------------*/
 void	get_sorted_three(t_stack	*stack);
 int		*ref_arr(t_stack	*stack, t_num d);
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d);
+void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d);
+// void	b_to_a(t_stack *a, t_stack *b, t_num d);
+int	search(t_stack temp, int max);
 
 #endif

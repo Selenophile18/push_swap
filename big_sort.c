@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/20 02:01:34 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:45:22 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,34 +36,13 @@ void	sort_arr(int *arr, t_num d)
 	}
 }
 
-int	*ref_arr(t_stack *stack, t_num d)
-{
-	int		*arr;
-	t_list	*iter;
-	int		i;
-
-	iter = stack->head;
-	i = 0;
-	arr = ft_calloc(d.arg_num, sizeof(int));
-	while (iter && i < d.arg_num)
-	{
-		arr[i] = iter->content;
-		i++;
-		iter = iter->next;
-	}
-	sort_arr(arr, d);
-	return (arr);
-}
-
 void	find_nb(t_stack **a, t_stack *b, int nb)
 {
 	int		j;
-	int		mid;
 	t_list	*tmp;
 
 	tmp = (*a)->head;
 	j = 0;
-	mid = (*a)->size / 2;
 	while (tmp->content != nb)
 	{
 		j++;

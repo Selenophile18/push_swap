@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/20 02:01:46 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 18:11:32 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,5 @@ int	main(int ac, char **av)
 	ft_init(&a, &d);
 	arr = ref_arr(a, d);
 	a_to_b(arr, &a, &b, &d);
+	b_to_a(arr, a, &b, &d);
 }
