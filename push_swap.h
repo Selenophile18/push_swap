@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/21 18:06:28 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 23:04:52 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@ t_stack	*get_arg(int ac, char **av);
 int		is_sorted(t_stack *stack);
 void	sort_arr(int *arr, t_num d);
 void	ft_init(t_stack **a, t_num *d);
+void	ft_free(char	**av);
 /*---------sorting------------*/
 void	get_sorted_three(t_stack	*stack);
 int		*ref_arr(t_stack	*stack, t_num d);
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d);
 void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d);
-// void	b_to_a(t_stack *a, t_stack *b, t_num d);
-int	search(t_stack temp, int max);
 
 #endif

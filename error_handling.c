@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:09:53 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/17 22:30:13 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:20:36 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,15 +109,18 @@ void	final_check(char *arg)
 {
 	int		i;
 	char	**all;
+	char	*temp;
 
 	i = 0;
 	all = ft_split(arg, 32);
 	ft_check_duplicate(all);
 	while (all[i])
 	{
-		all[i] = str_isdigit(all[i]);
-		if (ft_strlen(all[i]) >= 10)
-			max_min(all[i]);
+		temp = str_isdigit(all[i]);
+		if (ft_strlen(temp) >= 10)
+			max_min(temp);
 		i++;
+		free(temp);
 	}
+	ft_free(all);
 }

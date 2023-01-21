@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/21 16:39:12 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 19:32:23 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_stack	*ints(char	*all)
 		i++;
 	}
 	a->head = a->stack;
+	ft_free(arg);
 	return (a);
 }
 
@@ -56,7 +57,6 @@ t_stack	*get_arg(int ac, char **av)
 {
 	int		i;
 	t_stack	*a;
-	t_stack	*it;
 	char	*all;
 
 	i = 0;
@@ -68,6 +68,6 @@ t_stack	*get_arg(int ac, char **av)
 	}
 	final_check(all);
 	a = ints(all);
-	it = a;
+	free(all);
 	return (a);
 }

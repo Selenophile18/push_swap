@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:21:26 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/18 00:24:33 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/21 22:32:51 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,15 +40,13 @@ void	get_sorted_three(t_stack *stack)
 		less_arg(stack);
 	t3 = t2->next;
 	if ((t2->content > t3->content && t3->content > t1->content)
-		|| (t3->content > t2->content && t2->content < t1->content)
+		|| (t3->content > t1->content && t1->content > t2->content)
 		|| (t1->content > t2->content && t2->content > t3->content))
 		swap_a(stack);
-	if (is_sorted(stack))
-		exit(0);
 	if (t1->content < t2->content && t2->content > t3->content)
 		rev_rotate_a(&stack);
-	if (is_sorted(stack))
-		exit(0);
 	if (t1->content > t2->content && t1->content > t3->content)
 		rotate_a(&stack);
+	if (is_sorted(stack))
+		exit(0);
 }
