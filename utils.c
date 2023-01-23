@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:58:41 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 19:06:03 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:46:31 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_init(t_stack **a, t_num *d)
 	if (d->arg_num <= 150)
 		d->nb = 8;
 	else if (d->arg_num > 150)
-		d->nb = 17;
+		d->nb = 14;
 	d->mid = (*a)->size / 2;
 	d->m = d->mid;
 	d->offset = d->arg_num / d->nb;

@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 19:16:13 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 20:59:43 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,26 +37,24 @@ void	find_nb(t_stack **a, t_stack *b, int nb)
 	push(a, b, 0);
 }	
 
-int	iter(int tmp, t_stack **a, t_stack *b, t_num d, int *arr)
+int	iter(int tmp, t_num d, int *arr)
 {
-	if (d.start < 0) d.start = 0;
-	while (d.start < d.end)
+	int	mv;
+
+	if (d.start < 0)
+		d.start = 0;
+	mv = d.start;
+	while (mv < d.end)
 	{
-		if (tmp == arr[d.start])
-		{
-			find_nb(a, b, tmp);
-			if (d.start < d.m)
-				rotate_b(&b);
-			return (1);
-		}
-		d.start++;
+		if (tmp == arr[mv])
+			return (mv);
+		mv++;
 	}
-	return (0);
+	return (-1);
 }
 
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 {
-	int			i;
 	int			t;
 	t_stack 	*temp;
 
@@ -66,13 +64,16 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 		temp->stack = (*a)->head;
 		while (temp->stack)
 		{
-			i = d->start;
-			// printf("%d\n", d->start);
-			t = iter(temp->stack->content, a, b, *d, arr);
-			if (!t)
+			t = iter(temp->stack->content, *d, arr);
+			if (t == -1)
 				temp->stack = temp->stack->next;
 			else
+			{
+				find_nb(a, b, temp->stack->content);
+				if (t < d->m)
+					rotate_b(&b);
 				temp->stack = (*a)->head;
+			}
 		}
 		d->start -= d->offset;
 		d->end += d->offset;

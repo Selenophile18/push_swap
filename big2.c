@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:39:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 19:15:29 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 22:14:54 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,39 +27,62 @@ int	search(t_stack temp, int max)
 	return (j);
 }
 
-int	det_found(t_stack temp, int *arr, t_num d, int len)
+// int	det_found(t_stack temp, int *arr, int mid, int len)
+// {
+// 	int	max;
+// 	int	bfr;
+
+// 	if (!len)
+// 	{
+// 		max = search(temp, arr[len]);
+// 		return (0);		
+// 	}
+// 	max = search(temp, arr[len]);
+// 	bfr = search(temp, arr[len - 1]);
+// 	if ((max <= (mid / 2) && max > bfr) || (max > (mid / 2) && max < bfr))
+// 		return (1);
+// 	return(0);
+// }
+
+int	to_push(t_stack *b, t_stack *a, int *arr, int len)
 {
-	int	max;
-	int	bfr;
+	int		found;
+	int		r;
+	t_list	*temp;
 
-	if (!len)
-	{
-		max = search(temp, arr[len]);
-		return (0);		
-	}
-	max = search(temp, arr[len]);
-	bfr = search(temp, arr[len - 1]);
-	if ((max <= d.m && max > bfr) || (max > d.m && max < bfr))
-		return (1);
-	return(0);
-}
-
-void	to_push(int nb, t_stack *b, t_stack *a)
-{
-	int	found;
-
-	found = search(*b, nb);
+	found = search(*b, arr[len]);
+	temp = b->head;
+	r = 0;
 	if (found <= b->size / 2)
 	{
-		while (b->head->content != nb)
+		while (b->head->content != arr[len])
+		{
+			if (len > 0 && b->head->content == arr[len - 1])
+			{
+				push(&b, a, 1);
+				r = 1;	
+			}
+			if (b->head->content == arr[len])
+				break ;
 			rotate_b(&b);
+		}	
 	}
 	else
 	{
-		while (b->head->content != nb)
+		while (b->head->content != arr[len])
+		{
+			if(len > 0 && b->head->content == arr[len - 1])
+			{
+				push(&b, a, 1);
+				r = 1;
+			}
+			if (b->head->content == arr[len])
+				break ;
 			rev_rotate(&b, 1);
+		}
 	}
 	push(&b, a, 1);
+	return (r);
 }
 
 void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
@@ -70,13 +93,14 @@ void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
 
 	temp = *b;
 	len = d->arg_num - 1;
-	while (b->size > 0)
+	while (b->size > 0 && len >= 0)
 	{
-		// printf("%d - %d\n", d->start, len);
-		m = det_found(temp, arr, *d, len);
-		if (m)
-			to_push(arr[len - 1], b, a);
-		to_push(arr[len], b, a);
+		m = 0;
+		// m = det_found(temp, arr, b->size, len);
+		// if (m)
+		// printf("********%d *****\n", len);
+		m = to_push(b, a, arr, len);
+		// to_push(arr[len], b, a);
 		if (m)
 		{
 			swap(a, 0);

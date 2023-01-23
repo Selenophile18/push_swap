@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 20:32:49 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 21:08:38 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ int	main(int ac, char **av)
 	b.size = 0;
 	arr = ref_arr(a, d);
 	a_to_b(arr, &a, &b, &d);
-	// b_to_a(arr, a, &b, &d);
+	b_to_a(arr, a, &b, &d);
 	// system("leaks push_swap");
 }
