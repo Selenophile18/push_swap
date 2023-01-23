@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 20:59:43 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/24 00:01:08 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,14 @@ void	find_nb(t_stack **a, t_stack *b, int nb)
 	if (j <= (*a)->size / 2)
 	{
 		while ((*a)->head->content != nb)
-			rotate_a(a);
+			rotate(a, 'a');
 	}
 	else
 	{
 		while ((*a)->head->content != nb)
-			rev_rotate(a, 0);
+			rev_rotate(a, 'a');
 	}
-	push(a, b, 0);
+	push(a, b, 'b');
 }	
 
 int	iter(int tmp, t_num d, int *arr)
@@ -55,8 +55,8 @@ int	iter(int tmp, t_num d, int *arr)
 
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 {
-	int			t;
-	t_stack 	*temp;
+	int		t;
+	t_stack	*temp;
 
 	temp = (*a);
 	while ((*a)->size)
@@ -71,7 +71,7 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 			{
 				find_nb(a, b, temp->stack->content);
 				if (t < d->m)
-					rotate_b(&b);
+					rotate(&b, 'b');
 				temp->stack = (*a)->head;
 			}
 		}

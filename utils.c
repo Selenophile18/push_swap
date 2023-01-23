@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:58:41 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 20:46:31 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/24 00:50:30 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	is_sorted(t_stack *stack)
 void	ft_init(t_stack **a, t_num *d)
 {
 	d->arg_num = (*a)->size;
-	// if (d->arg_num <= 17)
-	// 	d->nb = 4;
+	if (d->arg_num <= 17)
+		d->nb = 5;
 	if (d->arg_num <= 150)
 		d->nb = 8;
 	else if (d->arg_num > 150)

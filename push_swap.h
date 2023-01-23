@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 16:53:55 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 23:56:00 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,9 @@ typedef	struct s_stack
 
 /*---------operations---------*/
 void	swap(t_stack *a, int c);
-void	rotate_a(t_stack **a);
+void	rotate(t_stack **a, int c);
 void	rev_rotate(t_stack **a, int c);
 void	push(t_stack **a, t_stack *b, int c);
-void	rotate_b(t_stack **b);
 /*-------error-handling-------*/
 void	max_min(char	*str);
 char	*str_isdigit(char	*s);
