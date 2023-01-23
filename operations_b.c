@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 22:33:57 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/20 16:53:37 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:01:00 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@ void	swap_b(t_stack *b)
 	ft_putendl_fd("sb", 1);
 }
 
-void	rotate_b(t_stack **b)
-{
-	t_list	*temp;
+// void	rotate_b(t_stack **b)
+// {
+// 	t_list	*temp;
 
-	if ((*b)->size < 2)
-		return ;
-	temp = (*b)->head;
-	(*b)->head = (*b)->head->next;
-	(*b)->stack = (*b)->head;
-	while ((*b)->stack->next)
-		(*b)->stack = (*b)->stack->next;
-	(*b)->stack->next = temp;
-	temp->next = NULL;
-	(*b)->stack = (*b)->head;
-	ft_putendl_fd("rb", 1);
-}
+// 	if ((*b)->size < 2)
+// 		return ;
+// 	temp = (*b)->head;
+// 	(*b)->head = (*b)->head->next;
+// 	(*b)->stack = (*b)->head;
+// 	while ((*b)->stack->next)
+// 		(*b)->stack = (*b)->stack->next;
+// 	(*b)->stack->next = temp;
+// 	temp->next = NULL;
+// 	(*b)->stack = (*b)->head;
+// 	ft_putendl_fd("rb", 1);
+// }
 
 void	push_a(t_stack **b, t_stack *a)
 {

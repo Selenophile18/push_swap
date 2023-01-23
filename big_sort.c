@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 17:30:28 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:16:13 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	find_nb(t_stack **a, t_stack *b, int nb)
 
 int	iter(int tmp, t_stack **a, t_stack *b, t_num d, int *arr)
 {
+	if (d.start < 0) d.start = 0;
 	while (d.start < d.end)
 	{
 		if (tmp == arr[d.start])
@@ -66,6 +67,7 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 		while (temp->stack)
 		{
 			i = d->start;
+			// printf("%d\n", d->start);
 			t = iter(temp->stack->content, a, b, *d, arr);
 			if (!t)
 				temp->stack = temp->stack->next;

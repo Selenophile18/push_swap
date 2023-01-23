@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 20:32:49 by hhattaki         ###   ########.fr       */
+/*   Created: 2022/10/13 23:56:02 by hhattaki          #+#    #+#             */
+/*   Updated: 2022/10/21 23:02:51 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include"libft.h"
 
-int	main(int ac, char **av)
+void	ft_putendl_fd(char	*s, int fd)
 {
-	t_stack	*a;
-	t_stack	b;
-	// t_stack	*iter;
-	// int		i = 0;
-	int		*arr;
-	t_num	d;
+	int	i;
 
-	if (ac == 1)
-		exit(0);
-	a = get_arg(ac, av);
-	ft_init(&a, &d);
-	if (d.arg_num < 4)
-		get_sorted_three(a);
-	b.head = 0;
-	b.stack = 0;
-	b.size = 0;
-	arr = ref_arr(a, d);
-	a_to_b(arr, &a, &b, &d);
-	// b_to_a(arr, a, &b, &d);
-	// system("leaks push_swap");
+	i = 0;
+	if (!s)
+		return ;
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+	write (fd, "\n", 1);
 }

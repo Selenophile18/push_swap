@@ -2,7 +2,7 @@ SOURCES = $(wildcard *.c)
 		
 CC		=	cc
 
-CFLAGS	=	-g -Wall -Wextra -Werror
+CFLAGS	=	-g -Wall -Wextra -Werror -fsanitize=address
 
 NAME	=	push_swap
 

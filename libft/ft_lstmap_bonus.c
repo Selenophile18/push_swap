@@ -1,37 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 20:32:49 by hhattaki         ###   ########.fr       */
+/*   Created: 2023/01/05 20:48:21 by hhattaki          #+#    #+#             */
+/*   Updated: 2023/01/05 22:13:42 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+t_list	*ft_lstmap(t_list *lst, int (*f)(int), void (*del)(int))
 {
-	t_stack	*a;
-	t_stack	b;
-	// t_stack	*iter;
-	// int		i = 0;
-	int		*arr;
-	t_num	d;
+	t_list	*tmp;
+	t_list	*new;
+	t_list	*amp;
 
-	if (ac == 1)
-		exit(0);
-	a = get_arg(ac, av);
-	ft_init(&a, &d);
-	if (d.arg_num < 4)
-		get_sorted_three(a);
-	b.head = 0;
-	b.stack = 0;
-	b.size = 0;
-	arr = ref_arr(a, d);
-	a_to_b(arr, &a, &b, &d);
-	// b_to_a(arr, a, &b, &d);
-	// system("leaks push_swap");
+	new = NULL;
+	amp = NULL;
+	tmp = lst;
+	if (!lst || !f || !del)
+		return (NULL);
+	while (tmp)
+	{
+		amp = ft_lstnew(f(tmp->content));
+		if (!amp)
+		{
+			ft_lstclear(&new, del);
+			return (NULL);
+		}
+		ft_lstadd_back(&new, amp);
+		tmp = tmp->next;
+	}
+	return (new);
 }

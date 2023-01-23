@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:39:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 16:54:51 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 19:15:29 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,11 @@ int	det_found(t_stack temp, int *arr, t_num d, int len)
 	int	max;
 	int	bfr;
 
+	if (!len)
+	{
+		max = search(temp, arr[len]);
+		return (0);		
+	}
 	max = search(temp, arr[len]);
 	bfr = search(temp, arr[len - 1]);
 	if ((max <= d.m && max > bfr) || (max > d.m && max < bfr))
@@ -67,6 +72,7 @@ void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
 	len = d->arg_num - 1;
 	while (b->size > 0)
 	{
+		// printf("%d - %d\n", d->start, len);
 		m = det_found(temp, arr, *d, len);
 		if (m)
 			to_push(arr[len - 1], b, a);
