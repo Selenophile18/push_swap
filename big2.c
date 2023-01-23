@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:39:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/21 17:43:21 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:54:51 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,9 @@ void	to_push(int nb, t_stack *b, t_stack *a)
 	else
 	{
 		while (b->head->content != nb)
-			rev_rotate_b(&b);
+			rev_rotate(&b, 1);
 	}
-	push_a(&b, a);
+	push(&b, a, 1);
 }
 
 void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
@@ -65,7 +65,7 @@ void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
 
 	temp = *b;
 	len = d->arg_num - 1;
-	while ((len - 1) >= 0)
+	while (b->size > 0)
 	{
 		m = det_found(temp, arr, *d, len);
 		if (m)
@@ -73,11 +73,9 @@ void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
 		to_push(arr[len], b, a);
 		if (m)
 		{
-			swap_a(a);
+			swap(a, 0);
 			len--;
 		}
 		len--;
 	}
-	while(ft_lstsize(a->head) < d->arg_num)
-		to_push(b->head->content, b, a);
 }

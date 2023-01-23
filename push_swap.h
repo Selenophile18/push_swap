@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/21 23:04:52 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/23 16:53:55 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_num
 	int	start;
 	int	end;
 	int	m;
+	int	n;
 }	t_num;
 
 typedef	struct s_stack
@@ -37,14 +38,11 @@ typedef	struct s_stack
 
 
 /*---------operations---------*/
-void	swap_a(t_stack *a);
+void	swap(t_stack *a, int c);
 void	rotate_a(t_stack **a);
-void	rev_rotate_a(t_stack **a);
-void	push_b(t_stack **a, t_stack *b);
-void	swap_b(t_stack *b);
+void	rev_rotate(t_stack **a, int c);
+void	push(t_stack **a, t_stack *b, int c);
 void	rotate_b(t_stack **b);
-void	rev_rotate_b(t_stack **b);
-void	push_a(t_stack **b, t_stack *a);
 /*-------error-handling-------*/
 void	max_min(char	*str);
 char	*str_isdigit(char	*s);
@@ -55,10 +53,10 @@ t_stack	*get_int(int ac, char **av, t_stack	*node);
 t_stack	*get_arg(int ac, char **av);
 /*------------utils-----------*/
 int		is_sorted(t_stack *stack);
-void	sort_arr(int *arr, t_num d);
 void	ft_init(t_stack **a, t_num *d);
 void	ft_free(char	**av);
 /*---------sorting------------*/
+int	search(t_stack temp, int max);
 void	get_sorted_three(t_stack	*stack);
 int		*ref_arr(t_stack	*stack, t_num d);
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d);
