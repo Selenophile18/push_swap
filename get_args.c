@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/22 15:12:24 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/24 16:30:34 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ t_stack	*get_arg(int ac, char **av)
 	}
 	final_check(all);
 	a = ints(all);
+	ft_check_duplicate(*a);
 	free(all);
 	return (a);
 }

@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:09:53 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/21 19:20:36 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/24 17:27:18 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,28 +18,22 @@ void	ft_error(void)
 	exit(-1);
 }
 
-void	ft_check_duplicate(char **arg)
+void	ft_check_duplicate(t_stack a)
 {
-	int		i;
-	int		len;
-	int		j;
+	t_list	*iter;
 
-	i = 0;
-	while (arg[i])
+	while (a.stack)
 	{
-		j = i + 1;
-		while (arg[j])
+		iter = a.stack->next;
+		while (iter)
 		{
-			if (ft_strlen(arg[i]) > ft_strlen(arg[j]))
-				len = ft_strlen(arg[i]);
-			else
-				len = ft_strlen(arg[j]);
-			if (!ft_strncmp(arg[i], arg[j], len))
+			if (a.stack->content == iter->content)
 				ft_error();
-			j++;
+			iter = iter->next;
 		}
-		i++;
+		a.stack = a.stack->next;
 	}
+	a.stack = a.head;
 }
 
 char	*str_isdigit(char	*s)
@@ -113,7 +107,8 @@ void	final_check(char *arg)
 
 	i = 0;
 	all = ft_split(arg, 32);
-	ft_check_duplicate(all);
+	if (!all[0])
+		ft_error();
 	while (all[i])
 	{
 		temp = str_isdigit(all[i]);

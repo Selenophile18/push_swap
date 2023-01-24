@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:39:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/24 00:02:25 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 00:50:14 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,4 +100,5 @@ void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d)
 		to_push(b, a, arr, len);
 		len--;
 	}
+	check_b(a, b);
 }

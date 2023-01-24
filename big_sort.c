@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/24 00:01:08 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 00:50:38 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,66 @@ int	iter(int tmp, t_num d, int *arr)
 	return (-1);
 }
 
+void upkid(t_stack *b, t_stack *a)
+{
+	int min;
+	min = b->stack->content;
+	while(b->stack)
+	{
+		if (b->stack->content < min)
+			min = b->stack->content;
+		b->stack = b->stack->next;
+	}
+	b->stack = b->head;
+	while (b->head->content != min)
+	{	
+		rotate(&b, 'b');
+	}
+	if (b->head->content == min)
+	{
+		push(&b, a, 'b');
+		rotate(&a, 'a');
+	}
+		
+	
+}
+void	check_b(t_stack *a, t_stack *b)
+{
+	while(b->head)
+	{
+		upkid(b,a);
+	}
+	// temp = b->head;
+	// while (b->size > 0)
+	// {
+	// 	temp = *b;
+	// 	len = -1;
+	// 	while (++len < d->arg_num)
+	// 	{
+	// 		while (temp.head)
+	// 		{
+	// 		if (temp.head->content == arr[len])
+	// 		{
+	// 			if (search(*b, arr[len]) <= b->size / 2)
+	// 			{
+	// 				while (b->head->content != arr[len])
+	// 				rotate(&a, 'a');
+	// 			}
+	// 			else
+	// 			{
+	// 				while (b->head->content != arr[len])
+	// 					rev_rotate(&b, 'b');
+	// 				push(&b, a, 'b');
+	// 			}
+	// 			temp.head = b->head;
+	// 			break;
+	// 		}
+	// 		temp.head = temp.head->next;
+	// 		}
+	// 	}
+	// }
+}
+
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 {
 	int		t;
@@ -78,4 +138,5 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 		d->start -= d->offset;
 		d->end += d->offset;
 	}
+	b_to_a(arr, *a, b, d);
 }

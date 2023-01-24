@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/23 23:56:00 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 00:50:22 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	push(t_stack **a, t_stack *b, int c);
 /*-------error-handling-------*/
 void	max_min(char	*str);
 char	*str_isdigit(char	*s);
-void	ft_check_duplicate(char	**arg);
+void	ft_check_duplicate(t_stack a);
 void	final_check(char	*all);
 /*--------get-arguments-------*/
 t_stack	*get_int(int ac, char **av, t_stack	*node);
@@ -55,10 +55,12 @@ int		is_sorted(t_stack *stack);
 void	ft_init(t_stack **a, t_num *d);
 void	ft_free(char	**av);
 /*---------sorting------------*/
-int	search(t_stack temp, int max);
+int		search(t_stack temp, int max);
 void	get_sorted_three(t_stack	*stack);
 int		*ref_arr(t_stack	*stack, t_num d);
 void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d);
 void	b_to_a(int *arr, t_stack *a, t_stack *b, t_num *d);
+void	get_sorted(t_stack *a, t_stack *b, int *arr, t_num *d);
+void	check_b(t_stack *a, t_stack *b);
 
 #endif
