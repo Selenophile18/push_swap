@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:39:19 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 00:50:14 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:19:50 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@ int	to_rotate(t_stack *b, t_stack *a, int *arr, int len)
 	{
 		if (len > 0 && b->head->content == arr[len - 1])
 		{
-			push(&b, a, 'a');
+			push(b, a, 'a');
 			r = 1;
 		}
 		if (b->head->content == arr[len])
 			break ;
-		rotate(&b, 'b');
+		rotate(b, 'b');
 	}
-	push(&b, a, 'a');
+	push(b, a, 'a');
 	return (r);
 }
 
@@ -58,14 +58,14 @@ int	to_rev_rotate(t_stack *b, t_stack *a, int *arr, int len)
 	{
 		if (len > 0 && b->head->content == arr[len - 1])
 		{
-			push(&b, a, 'a');
+			push(b, a, 'a');
 			r = 1;
 		}
 		if (b->head->content == arr[len])
 			break ;
-		rev_rotate(&b, 'b');
+		rev_rotate(b, 'b');
 	}
-	push(&b, a, 'a');
+	push(b, a, 'a');
 	return (r);
 }
 

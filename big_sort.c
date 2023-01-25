@@ -6,32 +6,32 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 20:08:51 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 00:50:38 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 19:19:22 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include"push_swap.h"
 
-void	find_nb(t_stack **a, t_stack *b, int nb)
+void	find_nb(t_stack *a, t_stack *b, int nb)
 {
 	int		j;
 	t_list	*tmp;
 
-	tmp = (*a)->head;
+	tmp = a->head;
 	j = 0;
 	while (tmp->content != nb)
 	{
 		j++;
 		tmp = tmp->next;
 	}
-	if (j <= (*a)->size / 2)
+	if (j <= a->size / 2)
 	{
-		while ((*a)->head->content != nb)
+		while (a->head->content != nb)
 			rotate(a, 'a');
 	}
 	else
 	{
-		while ((*a)->head->content != nb)
+		while (a->head->content != nb)
 			rev_rotate(a, 'a');
 	}
 	push(a, b, 'b');
@@ -66,12 +66,12 @@ void upkid(t_stack *b, t_stack *a)
 	b->stack = b->head;
 	while (b->head->content != min)
 	{	
-		rotate(&b, 'b');
+		rotate(b, 'b');
 	}
 	if (b->head->content == min)
 	{
-		push(&b, a, 'b');
-		rotate(&a, 'a');
+		push(b, a, 'b');
+		rotate(a, 'a');
 	}
 		
 	
@@ -113,15 +113,15 @@ void	check_b(t_stack *a, t_stack *b)
 	// }
 }
 
-void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
+void	a_to_b(int *arr, t_stack *a, t_stack *b, t_num *d)
 {
 	int		t;
 	t_stack	*temp;
 
-	temp = (*a);
-	while ((*a)->size)
+	temp = a;
+	while (a->size)
 	{
-		temp->stack = (*a)->head;
+		temp->stack = a->head;
 		while (temp->stack)
 		{
 			t = iter(temp->stack->content, *d, arr);
@@ -131,12 +131,12 @@ void	a_to_b(int *arr, t_stack **a, t_stack *b, t_num *d)
 			{
 				find_nb(a, b, temp->stack->content);
 				if (t < d->m)
-					rotate(&b, 'b');
-				temp->stack = (*a)->head;
+					rotate(b, 'b');
+				temp->stack = a->head;
 			}
 		}
 		d->start -= d->offset;
 		d->end += d->offset;
 	}
-	b_to_a(arr, *a, b, d);
+	b_to_a(arr, a, b, d);
 }

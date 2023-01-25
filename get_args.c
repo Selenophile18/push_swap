@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/24 16:30:34 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/25 20:54:13 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,38 +25,33 @@ void	ft_free(char	**av)
 	free(av);
 }
 
-t_stack	*ints(char	*all)
+void	ints(char	*all, t_stack *a)
 {
 	char	**arg;
-	t_stack	*a;
 	int		i;
 	int		s;
 
 	arg = ft_split(all, ' ');
 	s = 0;
-	while (arg[s])
-		s++;
-	a = (t_stack *)ft_calloc(s, sizeof(t_stack));
+
 	a->head = ft_lstnew(ft_atoi(arg[0]));
 	a->stack = a->head;
 	i = 1;
 	a->size = 1;
 	while (arg[i])
 	{
-		ft_lstadd_back(&(a)->head, ft_lstnew(ft_atoi(arg[i])));
+		ft_lstadd_back(&(a->head), ft_lstnew(ft_atoi(arg[i])));
 		a->head = a->head->next;
 		a->size++;
 		i++;
 	}
 	a->head = a->stack;
 	ft_free(arg);
-	return (a);
 }
 
-t_stack	*get_arg(int ac, char **av)
+void	get_arg(int ac, char **av , t_stack *a)
 {
 	int		i;
-	t_stack	*a;
 	char	*all;
 
 	i = 0;
@@ -67,8 +62,7 @@ t_stack	*get_arg(int ac, char **av)
 		all = ft_strjoin(all, av[i]);
 	}
 	final_check(all);
-	a = ints(all);
+	ints(all, a);
 	ft_check_duplicate(*a);
 	free(all);
-	return (a);
 }
