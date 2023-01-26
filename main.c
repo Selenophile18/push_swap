@@ -6,31 +6,18 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:18:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 20:46:57 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:49:05 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
-
-void	push_swap(t_stack *a, t_stack *b)
-{
-	int		*arr;
-	t_num	d;
-
-	if (d.arg_num < 4)
-		return(get_sorted_three(a));
-	ft_init(a, &d);
-	arr = ref_arr(a, d);
-	if (d.arg_num < 17)
-		return(get_sorted(a, b, arr, &d));
-	else
-		a_to_b(arr, a, b, &d);
-}
+#include "push_swap.h"
 
 int	main(int ac, char **av)
 {
 	t_stack	a;
 	t_stack	b;
+	int		*arr;
+	t_num	d;
 
 	if (ac == 1)
 		exit(0);
@@ -41,7 +28,14 @@ int	main(int ac, char **av)
 	a.stack = 0;
 	a.size = 0;
 	get_arg(ac, av, &a);
+	ft_init(&a, &d);
 	if (is_sorted(&a))
 		exit (0);
-	push_swap(&a, &b);
+	arr = ref_arr(&a, d);
+	if (d.arg_num < 4)
+		get_sorted_three(&a);
+	if (d.arg_num < 17)
+		get_sorted(&a, &b, arr, &d);
+	else
+		a_to_b(arr, &a, &b, &d);
 }

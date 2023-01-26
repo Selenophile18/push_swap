@@ -6,13 +6,13 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 20:54:13 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:32:00 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include "push_swap.h"
 
-void	ft_free(char	**av)
+void	ft_free(char **av)
 {
 	int	i;
 
@@ -25,7 +25,7 @@ void	ft_free(char	**av)
 	free(av);
 }
 
-void	ints(char	*all, t_stack *a)
+void	ints(char *all, t_stack *a)
 {
 	char	**arg;
 	int		i;
@@ -33,14 +33,15 @@ void	ints(char	*all, t_stack *a)
 
 	arg = ft_split(all, ' ');
 	s = 0;
-
+	while (arg[s])
+		s++;
 	a->head = ft_lstnew(ft_atoi(arg[0]));
 	a->stack = a->head;
 	i = 1;
 	a->size = 1;
 	while (arg[i])
 	{
-		ft_lstadd_back(&(a->head), ft_lstnew(ft_atoi(arg[i])));
+		ft_lstadd_back(&(a)->head, ft_lstnew(ft_atoi(arg[i])));
 		a->head = a->head->next;
 		a->size++;
 		i++;
@@ -49,7 +50,7 @@ void	ints(char	*all, t_stack *a)
 	ft_free(arg);
 }
 
-void	get_arg(int ac, char **av , t_stack *a)
+void	get_arg(int ac, char **av, t_stack *a)
 {
 	int		i;
 	char	*all;

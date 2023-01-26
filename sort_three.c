@@ -6,11 +6,11 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:21:26 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 19:25:31 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:33:28 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include "push_swap.h"
 
 void	less_arg(t_stack *stack)
 {
@@ -24,7 +24,7 @@ void	less_arg(t_stack *stack)
 	a = stack->head->content;
 	b = iter->content;
 	if (a > b)
-		swap(stack, 'a');
+		swap(stack, 0);
 }
 
 void	get_sorted_three(t_stack *stack)
@@ -36,14 +36,14 @@ void	get_sorted_three(t_stack *stack)
 	t1 = stack->head;
 	t2 = stack->head->next;
 	if (!t2 || !t2->next)
-		return (less_arg(stack));
+		less_arg(stack);
 	t3 = t2->next;
 	if ((t2->content > t3->content && t3->content > t1->content)
 		|| (t3->content > t1->content && t1->content > t2->content)
 		|| (t1->content > t2->content && t2->content > t3->content))
-		swap(stack, 'a');
+		swap(stack, 0);
 	if (t1->content < t2->content && t2->content > t3->content)
-		rev_rotate(stack, 'a');
+		rev_rotate(stack, 0);
 	if (t1->content > t2->content && t1->content > t3->content)
-		rotate(stack, 'a');
+		rotate_a(stack);
 }

@@ -6,17 +6,11 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:09:53 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/24 17:27:18 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:54:09 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
-
-void	ft_error(void)
-{
-	ft_putendl_fd("Error", 2);
-	exit(-1);
-}
+#include "push_swap.h"
 
 void	ft_check_duplicate(t_stack a)
 {
@@ -36,11 +30,25 @@ void	ft_check_duplicate(t_stack a)
 	a.stack = a.head;
 }
 
+void	get_error(char *s, int t, int i)
+{
+	int	j;
+
+	j = i;
+	while (j < t)
+	{
+		if (!ft_isdigit(s[j]) && s[i] != '-' && s[i] != '+')
+			ft_error();
+		j++;
+	}
+	if ((s[i] == '-' || s[i] == '+') && (!s[i + 1] || !ft_isdigit(s[i + 1])))
+		ft_error();
+}
+
 char	*str_isdigit(char	*s)
 {
 	int		i;
 	int		t;
-	int		j;
 	char	*av;
 
 	i = 0;
@@ -59,20 +67,12 @@ char	*str_isdigit(char	*s)
 			break ;
 		t--;
 	}
-	j = i;
-	while (j < t)
-	{
-		if (!ft_isdigit(s[j]) && s[i] != '-' && s[i] != '+')
-			ft_error();
-		j++;
-	}
-	if ((s[i] == '-' || s[i] == '+') && (!s[i + 1] || !ft_isdigit(s[i + 1])))
-		ft_error();
+	get_error(s, t, i);
 	av = ft_substr(s, i, t - i);
 	return (av);
 }
 
-void	max_min(char	*str)
+void	max_min(char *str)
 {
 	char	*max;
 	char	*min;
@@ -107,8 +107,6 @@ void	final_check(char *arg)
 
 	i = 0;
 	all = ft_split(arg, 32);
-	if (!all[0])
-		ft_error();
 	while (all[i])
 	{
 		temp = str_isdigit(all[i]);

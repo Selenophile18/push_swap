@@ -6,11 +6,17 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:58:41 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 19:11:56 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:54:15 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include"push_swap.h"
+#include "push_swap.h"
+
+void	ft_error(void)
+{
+	ft_putendl_fd("Error", 2);
+	exit(-1);
+}
 
 int	is_sorted(t_stack *stack)
 {
@@ -38,7 +44,7 @@ void	ft_init(t_stack *a, t_num *d)
 	if (d->arg_num <= 150)
 		d->nb = 8;
 	else if (d->arg_num > 150)
-		d->nb = 14;
+		d->nb = 15;
 	d->mid = a->size / 2;
 	d->m = d->mid;
 	d->offset = d->arg_num / d->nb;

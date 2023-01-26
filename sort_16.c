@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 00:41:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/25 19:25:12 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 15:54:43 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@ void	back_to_a(t_stack *a, t_stack *b)
 {
 	while (b->size > 0)
 	{
-		push(b, a, 'a');
+		push(b, a, 1);
 		if (a->head->next && a->head->content > a->head->next->content)
-			swap(a, 'a');
+			swap(a, 0);
 	}
 }
 
@@ -39,14 +39,14 @@ int	find(t_stack *a, t_stack *b, int nb)
 	if (j <= a->size / 2)
 	{
 		while (a->head->content != nb)
-			rotate(a, 'a');
+			rotate_a(a);
 	}
 	else
 	{
 		while (a->head->content != nb)
-			rev_rotate(a, 'a');
+			rev_rotate(a, 0);
 	}
-	push(a, b, 'b');
+	push(a, b, 0);
 	return (0);
 }
 
@@ -68,7 +68,7 @@ void	get_sorted(t_stack *a, t_stack *b, int *arr, t_num *d)
 			else
 			{
 				if (b->head->next && b->head->next->content < b->head->content)
-					swap(b, 'b');
+					swap(b, 1);
 				temp = a->head;
 			}
 			if (a->size == 3)
