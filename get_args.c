@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 15:07:42 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/26 15:32:00 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 17:58:30 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ void	get_arg(int ac, char **av, t_stack *a)
 	while (++i < ac)
 	{
 		all = ft_strjoin(all, " ");
+		if (!av[i][0])
+			ft_error();
 		all = ft_strjoin(all, av[i]);
 	}
 	final_check(all);

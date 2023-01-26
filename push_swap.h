@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 17:06:31 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/26 15:54:30 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:24:31 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include "./libft/libft.h"
 # include <limits.h>
-# include <stdio.h>
 
 typedef struct s_num
 {
@@ -51,7 +50,6 @@ void	final_check(char *all);
 /*--------get-arguments-------*/
 void	get_arg(int ac, char **av, t_stack *a);
 /*------------utils-----------*/
-int		is_sorted(t_stack *stack);
 void	ft_init(t_stack *a, t_num *d);
 void	ft_free(char **av);
 /*---------sorting------------*/

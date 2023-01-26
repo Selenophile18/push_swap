@@ -6,7 +6,7 @@
 /*   By: hhattaki <hhattaki@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 16:58:41 by hhattaki          #+#    #+#             */
-/*   Updated: 2023/01/26 15:54:15 by hhattaki         ###   ########.fr       */
+/*   Updated: 2023/01/26 20:23:49 by hhattaki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,6 @@ void	ft_error(void)
 {
 	ft_putendl_fd("Error", 2);
 	exit(-1);
-}
-
-int	is_sorted(t_stack *stack)
-{
-	t_list	*temp;
-	t_list	*iter;
-
-	iter = stack->head;
-	while (iter)
-	{
-		temp = iter->next;
-		while (temp)
-		{
-			if (iter->content > temp->content)
-				return (0);
-			temp = temp->next;
-		}
-		iter = iter->next;
-	}
-	return (1);
 }
 
 void	ft_init(t_stack *a, t_num *d)
